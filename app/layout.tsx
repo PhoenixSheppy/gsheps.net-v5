@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Contact Card',
-  description: 'Personal contact card website',
+  title: 'Phoenix',
+  description: 'Rhythm Games, Tech, and Photography!',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
