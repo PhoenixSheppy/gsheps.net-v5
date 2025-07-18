@@ -1,17 +1,26 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import phoenixPfp from '../assets/phoenix_pfp.jpg'
 import phoenixnetLabs from '../assets/phoenixnet_labs.png'
 
 export default function ContactCard() {
+  const [isFlashing, setIsFlashing] = useState(false)
+  const [isShaking, setIsShaking] = useState(false)
   return (
-    <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 max-w-5xl w-full border border-slate-700/50">
+    <div className={`bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 max-w-5xl w-full border border-slate-700/50 transition-transform duration-100 ${isShaking ? 'animate-pulse' : ''}`} style={isShaking ? { animation: 'shake 0.5s ease-in-out' } : {}}>
       {/* Header Section - Full Width */}
       <div className="flex items-center justify-center lg:justify-start space-x-6 mb-8">
         {/* Profile Picture */}
         <div className="flex-shrink-0">
-          <div className="w-20 h-20 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:rotate-12 hover:scale-110 cursor-pointer relative">
+          <div
+            className="w-20 h-20 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:rotate-12 hover:scale-110 cursor-pointer relative"
+            onClick={() => {
+              setIsShaking(true);
+              setTimeout(() => setIsShaking(false), 500);
+            }}
+          >
             <Image
               src={phoenixPfp}
               alt="Phoenix Profile Picture"
@@ -33,7 +42,32 @@ export default function ContactCard() {
             <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:600ms]">x</span>
           </h1>
           <p className="text-slate-300 text-base leading-relaxed">
-            He/Him | Dog | Rhythm Games, Tech, and Photography!
+            He/Him | <span
+              className="cursor-pointer hover:text-slate-100 transition-colors duration-200 select-none"
+              onClick={() => {
+                const audio = new Audio('/bark.mp3');
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log('Audio play failed:', e));
+              }}
+              title="🐕 Woof!"
+            >
+              Dog
+            </span> | Rhythm Games, Tech, and <span
+              className="cursor-pointer hover:text-slate-100 transition-colors duration-200 select-none"
+              onClick={() => {
+                const audio = new Audio('/click.mp3');
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log('Audio play failed:', e));
+
+                // Trigger flash animation
+                setIsFlashing(true);
+                setTimeout(() => setIsFlashing(false), 1200);
+              }}
+              title="📷 Click!"
+            >
+              Photography!
+              <span className={`inline-block ml-1 transition-all duration-300 ${isFlashing ? 'opacity-100 animate-pulse scale-110' : 'opacity-0'}`}>📸</span>
+            </span>
           </p>
         </div>
       </div>
@@ -127,10 +161,9 @@ export default function ContactCard() {
 
               <a
                 href="mailto:phoenix@phoenixnet-labs.com"
-                className="text-white px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90 flex items-center space-x-3 group"
-                style={{ backgroundColor: '#33416A' }}
+                className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90 flex items-center space-x-3 group"
               >
-                <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover:rotate-12 group-hover:scale-110" style={{ backgroundColor: '#2a3458' }}>
+                <div className="w-8 h-8 bg-slate-600 rounded-lg flex-shrink-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover:rotate-12 group-hover:scale-110">
                   <span className="text-lg">💬</span>
                 </div>
                 <span className="text-left">Contact</span>
@@ -196,10 +229,9 @@ export default function ContactCard() {
 
             <a
               href="mailto:phoenix@phoenixnet-labs.com"
-              className="text-white px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90 flex items-center space-x-3 group"
-              style={{ backgroundColor: '#33416A' }}
+              className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90 flex items-center space-x-3 group"
             >
-              <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover:rotate-12 group-hover:scale-110" style={{ backgroundColor: '#2a3458' }}>
+              <div className="w-8 h-8 bg-slate-600 rounded-lg flex-shrink-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover:rotate-12 group-hover:scale-110">
                 <span className="text-lg">💬</span>
               </div>
               <span className="text-left">Contact</span>
@@ -229,7 +261,7 @@ export default function ContactCard() {
           href="https://bsky.app/profile/gsheps.net"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 bg-white hover:bg-gray-100 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
+          className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
           aria-label="Bluesky"
         >
           <svg className="w-5 h-5" viewBox="0 0 600 530">
@@ -241,10 +273,10 @@ export default function ContactCard() {
           href="https://www.reddit.com/user/PhoenixTheDoggo/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 bg-orange-600 hover:bg-orange-700 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
+          className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
           aria-label="Reddit"
         >
-          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
           </svg>
         </a>
@@ -253,13 +285,10 @@ export default function ContactCard() {
           href="https://t.me/PhoenixSheppy"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
-          style={{ backgroundColor: '#399dd1' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2b8bb8'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#399dd1'}
+          className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
           aria-label="Telegram"
         >
-          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="#399dd1" viewBox="0 0 24 24">
             <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
           </svg>
         </a>
@@ -268,7 +297,7 @@ export default function ContactCard() {
           href="https://vrchat.com/home/user/usr_9fc2b73c-a267-4946-bada-163eb742410b"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 bg-white hover:bg-gray-100 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110 border border-black"
+          className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
           aria-label="VRChat"
         >
           <svg className="w-5 h-5" viewBox="0 0 508.66 510.9">
@@ -289,10 +318,10 @@ export default function ContactCard() {
           href="https://koito.phoenixnet.tech/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 bg-white hover:bg-gray-100 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
+          className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out hover:rotate-12 hover:scale-110"
           aria-label="Koito Music"
         >
-          <svg className="w-5 h-5" fill="#33416A" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24">
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
           </svg>
         </a>
