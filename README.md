@@ -2,6 +2,8 @@
 
 A modern, responsive contact card website built with Next.js and Tailwind CSS. Features a sleek dark theme with interactive animations and a professional layout perfect for personal branding.
 
+![Demo](https://raw.githubusercontent.com/PhoenixSheppy/gsheps.net-v5/main/demo.gif)
+
 ## 🛠️ Built With
 
 - **[Next.js 14](https://nextjs.org/)** - React framework for production
