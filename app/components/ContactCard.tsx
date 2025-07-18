@@ -8,6 +8,8 @@ import phoenixnetLabs from '../assets/phoenixnet_labs.png'
 export default function ContactCard() {
   const [isFlashing, setIsFlashing] = useState(false)
   const [isShaking, setIsShaking] = useState(false)
+  const [isRainbow, setIsRainbow] = useState(false)
+  const [isWaving, setIsWaving] = useState(false)
   return (
     <div className={`bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 max-w-5xl w-full border border-slate-700/50 transition-transform duration-100 ${isShaking ? 'animate-pulse' : ''}`} style={isShaking ? { animation: 'shake 0.5s ease-in-out' } : {}}>
       {/* Header Section - Full Width */}
@@ -32,14 +34,22 @@ export default function ContactCard() {
 
         {/* Name and Description */}
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-white mb-2 group cursor-pointer">
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:0ms]">P</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:100ms]">h</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:200ms]">o</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:300ms]">e</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:400ms]">n</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:500ms]">i</span>
-            <span className="inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:600ms]">x</span>
+          <h1
+            className="text-3xl font-bold mb-2 group cursor-pointer transition-all duration-300"
+            onClick={() => {
+              setIsRainbow(true);
+              setIsWaving(true);
+              setTimeout(() => setIsRainbow(false), 3000);
+              setTimeout(() => setIsWaving(false), 3000);
+            }}
+          >
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:0ms] ${isRainbow ? 'rainbow-letter-1' : 'text-white'} ${isWaving ? 'wave-letter-1' : ''}`}>P</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:100ms] ${isRainbow ? 'rainbow-letter-2' : 'text-white'} ${isWaving ? 'wave-letter-2' : ''}`}>h</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:200ms] ${isRainbow ? 'rainbow-letter-3' : 'text-white'} ${isWaving ? 'wave-letter-3' : ''}`}>o</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:300ms] ${isRainbow ? 'rainbow-letter-4' : 'text-white'} ${isWaving ? 'wave-letter-4' : ''}`}>e</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:400ms] ${isRainbow ? 'rainbow-letter-5' : 'text-white'} ${isWaving ? 'wave-letter-5' : ''}`}>n</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:500ms] ${isRainbow ? 'rainbow-letter-6' : 'text-white'} ${isWaving ? 'wave-letter-6' : ''}`}>i</span>
+            <span className={`inline-block transition-transform duration-300 ease-in-out group-hover:animate-bounce group-hover:[animation-delay:600ms] ${isRainbow ? 'rainbow-letter-7' : 'text-white'} ${isWaving ? 'wave-letter-7' : ''}`}>x</span>
           </h1>
           <p className="text-slate-300 text-base leading-relaxed">
             He/Him | <span

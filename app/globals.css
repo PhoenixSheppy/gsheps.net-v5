@@ -7,3 +7,111 @@
   10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
   20%, 40%, 60%, 80% { transform: translateX(2px); }
 }
+
+@keyframes rainbow {
+  0% { color: #ff0000; }
+  16.66% { color: #ff8000; }
+  33.33% { color: #ffff00; }
+  50% { color: #00ff00; }
+  66.66% { color: #0080ff; }
+  83.33% { color: #8000ff; }
+  100% { color: #ff0000; }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes tidalWave {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-8px);
+  }
+}
+
+.rainbow-letter-1 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0s;
+}
+
+.rainbow-letter-2 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.1s;
+}
+
+.rainbow-letter-3 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.2s;
+}
+
+.rainbow-letter-4 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.3s;
+}
+
+.rainbow-letter-5 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.4s;
+}
+
+.rainbow-letter-6 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.5s;
+}
+
+.rainbow-letter-7 {
+  animation: rainbow 1.5s linear infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.6s;
+}
+
+.wave-letter-1 {
+  animation: rainbow 1.8s linear infinite, tidalWave 2.1s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0s, 0s;
+}
+
+.wave-letter-2 {
+  animation: rainbow 1.9s linear infinite, tidalWave 2.2s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.3s, 0.15s;
+}
+
+.wave-letter-3 {
+  animation: rainbow 2.0s linear infinite, tidalWave 2.3s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.6s, 0.3s;
+}
+
+.wave-letter-4 {
+  animation: rainbow 2.1s linear infinite, tidalWave 2.4s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 0.9s, 0.45s;
+}
+
+.wave-letter-5 {
+  animation: rainbow 2.2s linear infinite, tidalWave 2.5s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 1.2s, 0.6s;
+}
+
+.wave-letter-6 {
+  animation: rainbow 2.3s linear infinite, tidalWave 2.6s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 1.5s, 0.75s;
+}
+
+.wave-letter-7 {
+  animation: rainbow 2.4s linear infinite, tidalWave 2.7s ease-in-out infinite !important;
+  text-shadow: 0 0 10px currentColor !important;
+  animation-delay: 1.8s, 0.9s;
+}
